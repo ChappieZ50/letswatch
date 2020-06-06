@@ -1,0 +1,3 @@
+[submodule "letswatch-lumen"]
+	path = letswatch-lumen
+	url = https://github.com/ChappieZ50/letswatch-lumen
