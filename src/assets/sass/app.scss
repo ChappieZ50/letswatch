@@ -1,5 +1,145 @@
-@import "~tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+$primaryColor: #212121;
+$secondColor: #d53766;
+
+html, body {
+  height: 100%;
+}
+
+// Homepage Button Effect
+@mixin btn-border-drawing($color: $secondColor, $hover: $secondColor, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+  box-shadow: inset 0 0 0 $width $color;
+  color: $color;
+  transition: color $duration $duration/3;
+  position: relative;
+
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    #{$vertical}: 0;
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+
+  &:hover {
+    color: $hover;
+
+    &::before,
+    &::after {
+      border-color: $hover;
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
+    }
+
+    &::before {
+      transition-delay: 0s, 0s, $duration;
+    }
+
+    &::after {
+      transition-delay: 0s, $duration, 0s;
+    }
+  }
+}
+
+.draw-border {
+  @include btn-border-drawing(#fff, $secondColor, 4px, bottom, right);
+}
 
 .homepage {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
 
+  .fullScreen__img-parent {
+    background: url("../images/homepage.jpg") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .fullScreen__parent {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .fullScreen__content {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+
+    &::before {
+      content: '';
+      background: #000;
+      opacity: 0.65;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+  }
+
+  .fullScreen__img-parent {
+    width: 100%;
+    height: 100%;
+  }
+
+  .fullScreen__text {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+
+    a {
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1.5;
+      font: 700 1.2rem 'Roboto Slab', sans-serif;
+      padding: 1em 2em;
+      letter-spacing: 0.05rem;
+
+      &:hover {
+        color: $secondColor;
+      }
+
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
+
+      &:focus {
+        outline: 2px dotted $secondColor;
+      }
+    }
+  }
 }
