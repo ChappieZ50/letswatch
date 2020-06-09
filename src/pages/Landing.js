@@ -6,9 +6,10 @@ const Landing = () => (
         <div className="fullScreen__parent">
             <div className="fullScreen__content">
                 <div className="fullScreen__img-parent"/>
+
                 <div className="fullScreen__text">
-                    <Button to="/watch-together" value="Watch Together"/>
-                    <Button to="/discussions" value="Join Discussions"/>
+                    <Button to="/watch-together">Watch Together</Button>
+                    <Button to="/discussions">Join Discussions</Button>
                 </div>
             </div>
         </div>

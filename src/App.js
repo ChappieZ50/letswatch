@@ -1,15 +1,19 @@
 import React from 'react';
-import Routes from './Routes';
+import {BrowserRouter} from "react-router-dom";
 
 import './assets/sass/app.scss';
 import './assets/base/bootstrap.min.css';
 
-function App() {
+import Routes from "./Routes";
+
+const App = () => {
     return (
         <div className="App">
-            <Routes/>
+            <BrowserRouter>
+                <Routes/>
+            </BrowserRouter>
         </div>
     );
-}
+};
 
 export default App;
