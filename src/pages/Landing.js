@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from "../../component/SinglePage/Button";
+import Button from "../component/Landing/Button";
 
-const Home = () => (
+const Landing = () => (
     <div className="homepage">
         <div className="fullScreen__parent">
             <div className="fullScreen__content">
@@ -15,4 +15,4 @@ const Home = () => (
     </div>
 );
 
-export default Home;
+export default Landing;
