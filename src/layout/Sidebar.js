@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { faHome,faUserFriends,faCommentDots } from '@fortawesome/free-solid-svg-icons'
+
+import {faHome, faUserFriends, faCommentDots} from '@fortawesome/free-solid-svg-icons'
 
 import {SidebarGroup} from "../component/Partials/SidebarGroup";
 import {SidebarItem} from "../component/Partials/SidebarItem";
+import useSidebarToggle from "../hooks/useSidebarToggle";
 
-export const Sidebar = () => {
+const Sidebar = () => {
+    const [active] = useSidebarToggle();
+
     return (
-        <aside className="sidebar">
+        <aside className={"sidebar" + (active ? " sidebar-active " : "")}>
             <div className="scroll-wrapper">
                 <div className="sidebar-inner">
                     <SidebarGroup title={'Menu'}>
@@ -25,3 +29,5 @@ export const Sidebar = () => {
         </aside>
     );
 };
+
+export default Sidebar;

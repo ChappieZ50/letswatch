@@ -178,7 +178,7 @@ html, body {
       white-space: nowrap;
       width: 230.5px;
       height: 100%;
-      border-right: .1px solid $borderColor !important;
+      border-right: .1px solid $borderColor;
       position: relative;
       padding: 26px;
 
@@ -219,13 +219,11 @@ html, body {
     height: 100%;
 
     aside.sidebar {
-
+      transition: width .5s ease-in-out;
       background: $primaryColor;
       white-space: nowrap;
-      max-width: 230px;
-      min-width: 210px;
-      width: 230px !important;
-
+      max-width: 231px;
+      width: 230px;
       -webkit-user-select: none;
       -moz-user-select: none;
       user-select: none;
@@ -282,6 +280,7 @@ html, body {
               padding: 0;
               margin: 0 0 0 10px;
               list-style: none;
+
               &:not(:last-child) {
                 border-bottom: .1px solid $borderColor;
               }
@@ -309,8 +308,9 @@ html, body {
                 &:hover {
                   a {
                     color: #fff;
-                    svg{
-                      color:#fff;
+
+                    svg {
+                      color: #fff;
                     }
                   }
                 }
@@ -354,7 +354,80 @@ html, body {
 
 
 }
+@media only screen and (min-width: 992px) {
+  .triggered{
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .triggered {
+    background: #000;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .75;
+    display: block !important;
+    transition: all .5s ease-in-out;
+  }
+  header {
+    .logo {
+      border-right: none !important;
+      margin: 0 auto;
+    }
 
+    .header {
+      display: none !important;
+    }
+
+    .burger-squeeze {
+      display: block;
+    }
+  }
+  .sidebar {
+    width: 0 !important;
+  }
+
+}
+
+.burger-squeeze {
+  display: none;
+  margin: auto 0 auto 30px;
+
+  .burger-lines {
+    background-color: #d53766 !important;
+
+    &:after, &:before {
+      background-color: #d53766 !important;
+    }
+  }
+}
+
+.open {
+  .burger-lines {
+    background-color: transparent !important;
+  }
+}
+
+.sidebar-active {
+  transition: all .5s ease-in-out;
+  width: 231px !important;
+  position: absolute !important;
+  left: 0;
+  top: 85px;
+  z-index: 999;
+  height: 100% !important;
+  border-right: .1px solid $borderColor;
+  display: block !important;
+}
+
+.triggered-overlay {
+  display: none;
+}
 
 /* Bootstrap */
 .btn-dark {
