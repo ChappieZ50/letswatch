@@ -16,4 +16,5 @@ export const SidebarGroup = ({title, children}) => {
 
 SidebarGroup.propTypes = {
     title: PropTypes.string.isRequired,
+    children: PropTypes.any
 };

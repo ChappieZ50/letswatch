@@ -354,11 +354,13 @@ html, body {
 
 
 }
+
 @media only screen and (min-width: 992px) {
-  .triggered{
+  .triggered {
     display: none !important;
   }
 }
+
 @media only screen and (max-width: 992px) {
   .triggered {
     background: #000;
@@ -380,10 +382,6 @@ html, body {
       margin: 0 auto;
     }
 
-    .header {
-      display: none !important;
-    }
-
     .burger-squeeze {
       display: block;
     }
@@ -392,6 +390,17 @@ html, body {
     width: 0 !important;
   }
 
+}
+
+@media only screen and (max-width: 430px) {
+  .room-buttons {
+    flex-direction: column;
+
+    .join-room-button, .create-room-button {
+      width: 100%;
+      margin: 10px 0 !important;
+    }
+  }
 }
 
 .burger-squeeze {
@@ -427,6 +436,32 @@ html, body {
 
 .triggered-overlay {
   display: none;
+}
+
+.watch-together {
+  height: 100%;
+
+  .room-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .join-room-button, .create-room-button {
+
+      padding: 1em 2em;
+      color: #fff;
+      font: 700 1.2rem 'Roboto Slab', sans-serif;
+      letter-spacing: 0.05rem;
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+
+      &:hover {
+        color: $secondColor;
+      }
+    }
+  }
 }
 
 /* Bootstrap */
