@@ -1,29 +1,20 @@
 import * as React from 'react';
 import Button from "./Landing/Button";
-import {useState,useEffect} from "react";
-import {useHistory} from "react-router";
-import {useLocalStorage} from "../hooks/useLocalStorage";
+import {useState} from "react";
+
+import {CreateRoomModal} from "./Modals/CreateRoomModal";
 
 export const CreateRoom = () => {
-    const fakeRoom = 'crlh6qxspyen3p56im';
-    const [room, setRoom] = useState('');
-    const [name, setName] = useLocalStorage('room', '');
+    const [modalActive, setModalActive] = useState(false);
 
-    let history = useHistory();
-
-    useEffect(() => {
-        if (room.length > 0) {
-            console.log('This is your room id: ' + room);
-            setName(room);
-            history.push('?room=' + room);
-        }
-    }, [room]);
-
-    const handleClick = () => {
-        setRoom(fakeRoom);
+    const handleModalActive = () => {
+        setModalActive(!modalActive);
     };
 
     return (
-        <Button className="create-room-button" onClick={handleClick}>Create room</Button>
+        <>
+            <CreateRoomModal active={modalActive} onClose={handleModalActive}/>
+            <Button className="create-room-button" onClick={handleModalActive}>Create room</Button>
+        </>
     );
 };
