@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Button from "./Landing/Button";
+import {Button} from "./Landing/Button";
 import {useState} from "react";
 
 import {CreateRoomModal} from "./Modals/CreateRoomModal";
 
 export const CreateRoom = () => {
+
     const [modalActive, setModalActive] = useState(false);
 
     const handleModalActive = () => {

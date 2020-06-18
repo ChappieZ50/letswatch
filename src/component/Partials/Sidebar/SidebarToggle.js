@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Burger from '@animated-burgers/burger-squeeze';
-import useSidebarToggle from "../../hooks/useSidebarToggle";
+import useSidebarToggle from "../../../hooks/useSidebarToggle";
 
 import '@animated-burgers/burger-squeeze/dist/styles.css';
 

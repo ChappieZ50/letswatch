@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import {faHome, faUserFriends, faCommentDots} from '@fortawesome/free-solid-svg-icons'
 
-import {SidebarGroup} from "../component/Partials/SidebarGroup";
-import {SidebarItem} from "../component/Partials/SidebarItem";
+import {SidebarGroup} from "../component/Partials/Sidebar/SidebarGroup";
+import {SidebarItem} from "../component/Partials/Sidebar/SidebarItem";
 import useSidebarToggle from "../hooks/useSidebarToggle";
 
 const Sidebar = () => {

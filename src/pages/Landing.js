@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "../component/Landing/Button";
+import {Button} from "../component/Landing/Button";
 
 const Landing = () => (
     <div className="homepage">
