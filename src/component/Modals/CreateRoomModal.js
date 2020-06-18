@@ -1,39 +1,58 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import {useState,useEffect} from "react";
-import {useHistory} from "react-router";
+import {useState} from "react";
 
-import Button from "../Landing/Button";
+import {useDispatch, useSelector} from "react-redux";
+import PropTypes from 'prop-types';
+
+import {RECAPTCHA_KEY} from "../../config";
+
+import Recaptcha from 'react-recaptcha';
+
+import {Button} from "../Landing/Button";
 import {BaseRoomModal} from "../BaseRoomModal";
 
-import {useLocalStorage} from "../../hooks/useLocalStorage";
+import {createRoom} from "../../redux/actions/room/roomAction";
+import {ParseErrors} from "../Partials/ParseErrors";
 
 
 export const CreateRoomModal = ({active, onClose}) => {
 
-    const fakeRoom = 'crlh6qxspyen3p56im';
-    const [room, setRoom] = useState('');
+    const [inputs, setInput] = useState({
+        username: '',
+        recaptcha: ''
+    });
 
-    const [name, setName] = useLocalStorage('room', '');
+    const dispatch = useDispatch();
 
-    let history = useHistory();
+    const handleClick = async () => {
+        await dispatch(createRoom(inputs));
+    };
 
-    useEffect(() => {
-        if (room.length > 0) {
-            console.log('This is your room id: ' + room);
-            setName(room);
-            history.push('?room=' + room);
-        }
-    }, [room]);
+    const handleChange = (e) => {
+        setInput({
+            ...inputs,
+            [e.target.name]: e.target.value
+        })
+    };
 
-    const handleClick = () => {
-        setRoom(fakeRoom);
+    const verifyCallback = (response) => {
+        setInput({
+            ...inputs,
+            recaptcha: response
+        });
     };
 
     return (
         <BaseRoomModal onClose={onClose} active={active} title="Create a Room">
-            <input type="text" className="form-control" placeholder="Username"/>
-            <Button className="join-room-button" onClick={handleClick}>Create</Button>
+
+            <input type="text" className="form-control" placeholder="Username" name="username" onChange={e => handleChange(e)}
+                   defaultValue={inputs.username}/>
+
+            <Recaptcha sitekey={RECAPTCHA_KEY} render="explicit" verifyCallback={verifyCallback} theme="dark"/>
+
+           {/*<ParseErrors errors={errors}/>*/}
+
+            <Button className="room-modal-button" onClick={handleClick}>Create</Button>
         </BaseRoomModal>
     );
 };

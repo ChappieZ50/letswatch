@@ -1,6 +1,10 @@
 import * as React from 'react';
 import Modal from "react-modal";
 import PropTypes from 'prop-types';
+import {Loading} from "./Partials/Loading";
+import {useEffect} from "react";
+import {useState} from "react";
+import {RoomModal} from "./Partials/RoomModal";
 
 const customStyles = {
     content: {
@@ -13,14 +17,25 @@ const customStyles = {
     }
 };
 
-export const BaseRoomModal = ({active, onClose, title,children}) => {
+export const BaseRoomModal = ({active, onClose, title, children}) => {
     Modal.setAppElement('*');
+
+    const [loadingActive, setLoadingActive] = useState(false);
+
+    useEffect(() => {
+        if (active) {
+            setLoadingActive(true);
+            setTimeout(() => setLoadingActive(false),1000);
+        }
+
+    }, [active]);
+
     return (
         <Modal isOpen={active} onRequestClose={onClose} style={customStyles}>
-            <div className="join-room-modal">
-                <h4 className="modal-title">{title}</h4>
+            <Loading active={loadingActive}/>
+            <RoomModal title={title} active={!loadingActive}>
                 {children}
-            </div>
+            </RoomModal>
         </Modal>
     );
 };
