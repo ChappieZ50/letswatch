@@ -2,7 +2,8 @@ import {CREATE_ROOM} from "../../actions/actionTypes";
 
 const initialState = {
     errors: [],
-    data: {}
+    data: {},
+    status: false
 };
 
 const roomReducer = (state = initialState, action) => {

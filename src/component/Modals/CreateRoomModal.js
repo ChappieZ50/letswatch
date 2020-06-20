@@ -13,19 +13,32 @@ import {BaseRoomModal} from "../BaseRoomModal";
 
 import {createRoom} from "../../redux/actions/room/roomAction";
 import {ParseErrors} from "../Partials/ParseErrors";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
+import {useEffect} from "react";
 
 
 export const CreateRoomModal = ({active, onClose}) => {
 
-    const [inputs, setInput] = useState({
-        username: '',
-        recaptcha: ''
-    });
+    const [inputs, setInput] = useState({username: ''});
+    const [recaptcha, setRecaptcha] = useState('');
+
+    const [storageRoom, setStorageRoom] = useLocalStorage('room');
 
     const dispatch = useDispatch();
 
-    const handleClick = async () => {
-        await dispatch(createRoom(inputs));
+    const room = useSelector(state => state.room);
+
+    useEffect(() => {
+        if (room.status) {
+            setStorageRoom(room.data);
+        }
+    }, [room.data]);
+
+    const handleClick = () => {
+        dispatch(createRoom({
+            recaptcha,
+            ...inputs
+        }));
     };
 
     const handleChange = (e) => {
@@ -36,21 +49,16 @@ export const CreateRoomModal = ({active, onClose}) => {
     };
 
     const verifyCallback = (response) => {
-        setInput({
-            ...inputs,
-            recaptcha: response
-        });
+        setRecaptcha(response);
     };
-
     return (
         <BaseRoomModal onClose={onClose} active={active} title="Create a Room">
-
             <input type="text" className="form-control" placeholder="Username" name="username" onChange={e => handleChange(e)}
                    defaultValue={inputs.username}/>
 
             <Recaptcha sitekey={RECAPTCHA_KEY} render="explicit" verifyCallback={verifyCallback} theme="dark"/>
 
-           {/*<ParseErrors errors={errors}/>*/}
+            <ParseErrors errors={room.errors}/>
 
             <Button className="room-modal-button" onClick={handleClick}>Create</Button>
         </BaseRoomModal>
