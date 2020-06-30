@@ -6,6 +6,7 @@ $borderColor: #1e2029;
 $activeColor: #d53766;
 $activeBackgroundColor: #181923;
 
+
 * {
   text-decoration: none !important;
 }
@@ -13,6 +14,42 @@ $activeBackgroundColor: #181923;
 html, body {
   min-height: 100%;
   height: 100% !important;
+}
+
+@mixin scroll($w:10px,$h:10px,$scroll:rgba(0, 0, 0, .25),$scroll-bg:rgba(0, 0, 0, .1)) {
+
+  &::-webkit-scrollbar-track {
+    background: $scroll-bg !important;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    border-radius: 5px;
+    background: $scroll !important;
+    -webkit-transition: color .2s ease;
+    transition: color .2s ease;
+  }
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: $w;
+    height: $h;
+  }
+}
+
+@mixin display-flex($a-items:center,$j-content:center,$f-direction:row) {
+  display: flex;
+  @if ($a-items) {
+    align-items: $a-items;
+  }
+  @if ($j-content) {
+    justify-content: $j-content;
+  }
+
+  @if ($f-direction) {
+    flex-direction: $f-direction;
+  }
 }
 
 // Homepage Button Effect
@@ -232,24 +269,7 @@ html, body {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
-      &::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, .1) !important;
-        border-radius: 0;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        cursor: pointer;
-        border-radius: 5px;
-        background: rgba(0, 0, 0, .25) !important;
-        -webkit-transition: color .2s ease;
-        transition: color .2s ease;
-      }
-
-      &::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 10px;
-        height: 10px;
-      }
+      @include scroll();
 
       .scroll-wrapper {
         overflow: hidden !important;
@@ -361,6 +381,14 @@ html, body {
   }
 }
 
+@media only screen and (max-width: 405px) {
+  header {
+    .user a {
+      margin-right: 5px !important;
+    }
+  }
+}
+
 @media only screen and (max-width: 992px) {
   .triggered {
     background: #000;
@@ -389,11 +417,31 @@ html, body {
   .sidebar {
     width: 0 !important;
   }
+  .created-room {
+    flex-direction: column !important;
 
+    .users {
+      display: flex !important;
+      @include display-flex(flex-start !important, flex-start !important, row !important);
+
+      &:not(:first-child) {
+        margin-left: 30px;
+      }
+
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      max-height: 260px;
+
+      border-left: 0 !important;
+      border-top: .1px solid $borderColor;
+    }
+  }
 }
 
 @media only screen and (max-width: 430px) {
   .room-buttons {
+
     flex-direction: column;
 
     .join-room-button, .create-room-button {
@@ -427,7 +475,6 @@ html, body {
   width: 231px !important;
   position: absolute !important;
   left: 0;
-  top: 85px;
   z-index: 999;
   height: 100% !important;
   border-right: .1px solid $borderColor;
@@ -442,9 +489,8 @@ html, body {
   height: 100%;
 
   .room-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    @include display-flex();
 
     .join-room-button, .create-room-button {
 
@@ -514,6 +560,132 @@ html, body {
         color: $secondColor;
       }
     }
+  }
+}
+
+.created-room {
+  @include display-flex();
+  position: relative;
+  height: 100%;
+
+  .users {
+    border-left: .1px solid $borderColor;
+    display: block;
+    max-width: 200px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 0 90px 0;
+    @include scroll(5px, 5px, $secondColor);
+
+    .user {
+      @include display-flex(center, center, column);
+      margin-top: 30px;
+
+      .user-avatar {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        @include display-flex();
+        border-radius: 50%;
+        transition: all .2s;
+
+        &:hover {
+          filter: drop-shadow(0 0 5px $secondColor);
+        }
+      }
+
+      .user-name {
+        margin-top: 15px;
+        color: #fff;
+
+        .user-owner {
+          color: $secondColor;
+        }
+      }
+    }
+  }
+
+  .room-frame {
+    width: 100%;
+    height: 100%;
+    @include display-flex();
+
+    .room-open-frame {
+      position: absolute;
+      bottom: 85px;
+
+
+      @media only screen and (max-width: 992px) {
+        bottom: 260px;
+      }
+
+      .open-frame-items {
+        display: flex;
+
+        .frame-item {
+
+          padding: 15px;
+          cursor: pointer;
+
+          border-color: $borderColor;
+          border-style: solid;
+          border-width: 1px 1px 5px 1px;
+          border-bottom-color: transparent;
+          border-top-right-radius: 2px;
+          border-top-left-radius: 2px;
+
+          transition: all .3s;
+
+          &:not(:first-child) {
+            margin-left: 4px;
+          }
+
+          &:hover {
+            border-color: $secondColor;
+            border-radius: 0;
+            margin-top: -5px;
+
+            svg {
+              color: $secondColor;
+            }
+          }
+
+          svg {
+            color: #fff;
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .created-room {
+    .users {
+      .user {
+        margin-left: 0 !important;
+      }
+    }
+
+  }
+}
+
+.gender {
+
+  .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    background-color: $secondColor !important;
+    border-color: $secondColor !important;
+  }
+
+  label {
+    color: #fff;
+  }
+
+  svg {
+    color: $secondColor;
   }
 }
 
