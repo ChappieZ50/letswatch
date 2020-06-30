@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Modal from "react-modal";
 import PropTypes from 'prop-types';
+import Modal from "react-modal";
+
 import {Loading} from "./Partials/Loading";
 import {useEffect} from "react";
 import {useState} from "react";
-import {RoomModal} from "./Partials/RoomModal";
 
 const customStyles = {
     content: {
@@ -17,7 +17,7 @@ const customStyles = {
     }
 };
 
-export const BaseRoomModal = ({active, onClose, title, children}) => {
+export const BaseModal = ({active, onClose, children}) => {
     Modal.setAppElement('*');
 
     const [loadingActive, setLoadingActive] = useState(false);
@@ -25,7 +25,7 @@ export const BaseRoomModal = ({active, onClose, title, children}) => {
     useEffect(() => {
         if (active) {
             setLoadingActive(true);
-            setTimeout(() => setLoadingActive(false),1000);
+            setTimeout(() => setLoadingActive(false), 1000);
         }
 
     }, [active]);
@@ -33,15 +33,14 @@ export const BaseRoomModal = ({active, onClose, title, children}) => {
     return (
         <Modal isOpen={active} onRequestClose={onClose} style={customStyles}>
             <Loading active={loadingActive}/>
-            <RoomModal title={title} active={!loadingActive}>
+            <div className={loadingActive ? 'd-none' : 'd-block'}>
                 {children}
-            </RoomModal>
+            </div>
         </Modal>
     );
 };
 
-BaseRoomModal.propTypes = {
+BaseModal.propTypes = {
     active: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
 };
