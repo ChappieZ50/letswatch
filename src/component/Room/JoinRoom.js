@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from "react";
 
-import {Button} from "./Landing/Button";
+import {Button} from "../Landing/Button";
 import {JoinRoomModal} from "./Modals/JoinRoomModal";
 
 export const JoinRoom = () => {
