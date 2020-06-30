@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PNotify from 'pnotify/dist/es/PNotify';
 
 import {CREATE_ROOM} from "../actionTypes";
 
@@ -8,9 +9,11 @@ export const createRoom = state => dispatch => {
 
     axios.post(API + '/room', state)
         .then(response => {
+            PNotify.success('Room created');
             dispatch(success(JSON.parse(response.data)))
         })
         .catch(error => {
+            PNotify.error('Failed to create room');
             dispatch(failed(error.response.data))
         })
 };
@@ -33,3 +36,4 @@ export const failed = (errors) => {
         }
     }
 };
+
