@@ -1,12 +1,16 @@
 import * as React from 'react';
 
 import {RoomUsers} from "./RoomUsers";
-import {RoomFrame} from "./RoomFrame";
+import {Frames} from "../Frames/Frames";
+import {RoomVideoFrame} from "./RoomVideoFrame";
 
 export const Room = () => {
     return (
         <div className="created-room">
-            <RoomFrame/>
+            <div className="room-frame">
+                <RoomVideoFrame/>
+                <Frames/>
+            </div>
             <RoomUsers/>
         </div>
     );
