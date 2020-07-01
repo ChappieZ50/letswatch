@@ -17,9 +17,11 @@ export const Frames = () => {
     };
 
     return (
-        <div className="open-frame-items">
-            <YoutubeExtension onClick={handleFrame}/>
-            <TwitchExtension onClick={handleFrame}/>
+        <div className="room-open-frame">
+            <div className="open-frame-items">
+                <YoutubeExtension onClick={handleFrame}/>
+                <TwitchExtension onClick={handleFrame}/>
+            </div>
         </div>
     );
 };
