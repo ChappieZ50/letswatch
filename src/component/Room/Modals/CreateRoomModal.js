@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {useState} from "react";
-
-import {useDispatch, useSelector} from "react-redux";
+import {useState, useEffect} from "react";
 import PropTypes from 'prop-types';
-
-import {RECAPTCHA_KEY} from "../../../config";
+import {useDispatch, useSelector} from "react-redux";
 
 import Recaptcha from 'react-recaptcha';
 
@@ -14,9 +11,9 @@ import {BaseRoomModal} from "./BaseRoomModal";
 import {createRoom} from "../../../redux/actions/room/roomAction";
 import {ParseErrors} from "../../Partials/ParseErrors";
 import {useLocalStorage} from "../../../hooks/useLocalStorage";
-import {useEffect} from "react";
 import {Gender} from "../../Partials/Gender";
 
+import {RECAPTCHA_KEY} from "../../../config";
 
 export const CreateRoomModal = ({active, onClose}) => {
 
@@ -32,15 +29,15 @@ export const CreateRoomModal = ({active, onClose}) => {
 
     useEffect(() => {
         if (room.status) {
-            setStorageRoom(room.data);
+            setStorageRoom(room.data.room_id);
             onClose();
         }
-    }, [room.data]);
+    }, [room]);
 
     const handleClick = () => {
         dispatch(createRoom({
             recaptcha,
-            uuid: storageUser,
+            user_id: storageUser,
             ...inputs
         }));
 

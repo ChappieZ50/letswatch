@@ -1,4 +1,4 @@
-import {CREATE_ROOM} from "../../actions/actionTypes";
+import {CREATE_ROOM, GET_ROOM} from "../../actions/actionTypes";
 
 const initialState = {
     errors: [],
@@ -9,6 +9,11 @@ const initialState = {
 const roomReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_ROOM:
+            return {
+                ...state,
+                ...action.payload
+            };
+        case GET_ROOM:
             return {
                 ...state,
                 ...action.payload

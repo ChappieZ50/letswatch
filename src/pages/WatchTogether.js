@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {useState, useEffect} from "react";
-import {useSelector} from "react-redux";
+
+import {useDispatch, useSelector} from "react-redux";
+import {getRoom} from "../redux/actions/room/roomAction";
 
 import {useLocalStorage} from "../hooks/useLocalStorage";
 
@@ -10,23 +12,31 @@ import {Room} from "../component/Room/Room";
 export const WatchTogether = () => {
 
     const [storageRoom, setStorageRoom] = useLocalStorage('room');
-
-    const [roomActive, setRoomActive] = useState(!!storageRoom);
+    const [storageUser, setStorageUser] = useLocalStorage('user');
 
     const room = useSelector(state => state.room);
 
+    const [roomActive, setRoomActive] = useState(room.status);
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        if (storageRoom || room.status) {
+        if (room.status) {
+            setRoomActive(true);
+        } else if (storageRoom) {
+            dispatch(getRoom({
+                room_id: storageRoom,
+                user_id: storageUser,
+            }));
             setRoomActive(true);
         }
-    }, [room, storageRoom]);
+    }, [storageRoom, room.status]);
 
     return (
         <div className="watch-together">
-                {
-                    roomActive ? <Room/> : <CreateOrJoinRoom/>
-                }
-
+            {
+                roomActive ? <Room/> : <CreateOrJoinRoom/>
+            }
         </div>
     );
 };
