@@ -369,6 +369,7 @@ html, body {
       position: relative;
       max-width: 100%;
       min-width: 0;
+      padding-bottom: 85px;
     }
   }
 
@@ -431,7 +432,7 @@ html, body {
       padding: 0 !important;
       margin: 0 !important;
       max-width: 100% !important;
-      max-height: 260px;
+      max-height: 200px;
 
       border-left: 0 !important;
       border-top: .1px solid $borderColor;
@@ -564,6 +565,7 @@ html, body {
 }
 
 .created-room {
+
   @include display-flex();
   position: relative;
   height: 100%;
@@ -575,7 +577,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    padding: 0 0 90px 0;
+
     @include scroll(5px, 5px, $secondColor);
 
     .user {
@@ -584,7 +586,6 @@ html, body {
 
       .user-avatar {
         width: 100px;
-        height: 100px;
         position: relative;
         @include display-flex();
         border-radius: 50%;
@@ -613,11 +614,11 @@ html, body {
 
     .room-open-frame {
       position: absolute;
-      bottom: 85px;
+      bottom: 0;
 
 
       @media only screen and (max-width: 992px) {
-        bottom: 260px;
+        bottom: 200px;
       }
 
       .open-frame-items {
