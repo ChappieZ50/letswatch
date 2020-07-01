@@ -74,7 +74,7 @@ export const CreateRoomModal = ({active, onClose}) => {
 
             <ParseErrors errors={room.errors}/>
 
-            <Button className="room-modal-button" onClick={handleClick}>Create</Button>
+            <Button className="base-modal-button" onClick={handleClick}>Create</Button>
         </BaseRoomModal>
     );
 };

@@ -17,7 +17,7 @@ const customStyles = {
     }
 };
 
-export const BaseModal = ({active, onClose, children}) => {
+export const BaseModal = ({active, onClose, children, title}) => {
     Modal.setAppElement('*');
 
     const [loadingActive, setLoadingActive] = useState(false);
@@ -34,7 +34,10 @@ export const BaseModal = ({active, onClose, children}) => {
         <Modal isOpen={active} onRequestClose={onClose} style={customStyles}>
             <Loading active={loadingActive}/>
             <div className={loadingActive ? 'd-none' : 'd-block'}>
-                {children}
+                <div className={"base-modal" + (active ? ' base-modal-active' : '')}>
+                    <h4 className="modal-title" key="modal-title">{title}</h4>
+                    {children}
+                </div>
             </div>
         </Modal>
     );
@@ -43,4 +46,5 @@ export const BaseModal = ({active, onClose, children}) => {
 BaseModal.propTypes = {
     active: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
 };
