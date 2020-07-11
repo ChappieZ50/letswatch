@@ -1,4 +1,9 @@
+/* GLOBAL TYPES */
 export const SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE';
+
+/* ROOM TYPES */
 export const CREATE_ROOM = 'CREATE_ROOM';
 export const GET_ROOM = 'GET_ROOM';
+
+/* VIDEO TYPES */
 export const VIDEO_ON_PLAYING = 'VIDEO_ON_PLAYING';
