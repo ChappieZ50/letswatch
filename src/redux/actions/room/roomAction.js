@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PNotify from 'pnotify/dist/es/PNotify';
 
-import {CREATE_ROOM, GET_ROOM} from "../actionTypes";
+import {ROOM_CREATE, ROOM_GET} from "../actionTypes";
 
 import {API} from "../../../config";
 
@@ -30,7 +30,7 @@ export const getRoom = (data) => dispatch => {
 
 export const successGetRoom = (data) => {
     return {
-        type: GET_ROOM,
+        type: ROOM_GET,
         payload: {
             data,
             errors: []
@@ -40,7 +40,7 @@ export const successGetRoom = (data) => {
 
 export const success = (data) => {
     return {
-        type: CREATE_ROOM,
+        type: ROOM_CREATE,
         payload: {
             data,
             status: true,
@@ -51,7 +51,7 @@ export const success = (data) => {
 
 export const failed = (errors) => {
     return {
-        type: CREATE_ROOM,
+        type: ROOM_CREATE,
         payload: {
             errors
         }
