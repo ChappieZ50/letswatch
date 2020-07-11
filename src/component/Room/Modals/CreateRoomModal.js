@@ -32,7 +32,7 @@ export const CreateRoomModal = ({active, onClose}) => {
             setStorageRoom(room.data.room_id);
             onClose();
         }
-    }, [room]);
+    }, [room.status]);
 
     const handleClick = () => {
         dispatch(createRoom({
