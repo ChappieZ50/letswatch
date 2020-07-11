@@ -24,7 +24,7 @@ export const getRoom = (data) => dispatch => {
     axios.get(url).then(response => {
         dispatch(successGetRoom(JSON.parse(response.data)));
     }).catch(() => {
-        PNotify.error('Failed to get room please try again');
+        localStorage.removeItem('room');
     });
 };
 
@@ -33,6 +33,7 @@ export const successGetRoom = (data) => {
         type: GET_ROOM,
         payload: {
             data,
+            errors: []
         }
     }
 };
@@ -42,7 +43,8 @@ export const success = (data) => {
         type: CREATE_ROOM,
         payload: {
             data,
-            status: true
+            status: true,
+            errors: []
         }
     }
 };
