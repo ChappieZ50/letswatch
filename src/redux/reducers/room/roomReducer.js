@@ -1,4 +1,4 @@
-import {ROOM_CREATE, ROOM_GET, ROOM_JOIN, ROOM_SET} from "../../actions/actionTypes";
+import {ROOM_CREATE, ROOM_GET, ROOM_JOIN, ROOM_PLAYER_ON_CHANGE, ROOM_SET} from "../../actions/actionTypes";
 
 const initialState = {
     errors: [],
@@ -28,6 +28,14 @@ const roomReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload
+            };
+        case ROOM_PLAYER_ON_CHANGE:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    player: action.payload
+                },
             };
         default:
             return state;

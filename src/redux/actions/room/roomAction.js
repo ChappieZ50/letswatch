@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PNotify from 'pnotify/dist/es/PNotify';
 
-import {ROOM_CREATE, ROOM_DELETE_OR_EXIT, ROOM_GET, ROOM_JOIN, ROOM_SET} from "../actionTypes";
+import {ROOM_CREATE, ROOM_GET, ROOM_JOIN, ROOM_PLAYER_ON_CHANGE, ROOM_SET} from "../actionTypes";
 
 import {API} from "../../../config";
 
@@ -71,6 +71,24 @@ export const setRoom = (data, status = true) => dispatch => {
         payload: {
             data,
             status
+        }
+    });
+};
+
+export const sendPlayer = (state) => dispatch => {
+    axios.post(API + '/room/new-player', state)
+        .then(() => {
+            dispatch(setPlayer(state));
+        });
+};
+
+export const setPlayer = ({type, url, seek}) => dispatch => {
+    return dispatch({
+        type: ROOM_PLAYER_ON_CHANGE,
+        payload: {
+            type,
+            url,
+            seek
         }
     });
 };

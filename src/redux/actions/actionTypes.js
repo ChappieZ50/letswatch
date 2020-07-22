@@ -6,7 +6,7 @@ export const ROOM_CREATE = 'ROOM_CREATE';
 export const ROOM_JOIN = 'ROOM_JOIN';
 export const ROOM_GET = 'ROOM_GET';
 export const ROOM_SET = 'ROOM_SET';
-export const ROOM_DELETE_OR_EXIT = 'ROOM_DELETE_OR_EXIT';
+export const ROOM_PLAYER_ON_CHANGE = 'ROOM_PLAYER_ON_CHANGE';
 
 /* VIDEO TYPES */
 export const VIDEO_ON_PLAYING = 'VIDEO_ON_PLAYING';

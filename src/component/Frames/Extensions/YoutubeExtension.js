@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {useState} from "react";
-import PropTypes from "prop-types";
+import {useState,useEffect} from "react";
+
+import {useSelector} from "react-redux";
 
 import ReactTooltip from "react-tooltip";
 
@@ -8,22 +9,20 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {YoutubeModal} from "../Modals/YoutubeModal";
 
-
-export const YoutubeExtension = ({onClick}) => {
+export const YoutubeExtension = () => {
 
     const [modalActive, setModalActive] = useState(false);
+    const player = useSelector(state => state.room.data.player);
 
+    useEffect(() => {
+        setModalActive(false);
+    }, [player]);
 
     const handleModalActive = () => {
         setModalActive(!modalActive);
     };
 
-    const handleYoutube = async () => {
-        await onClick({
-            type: 'youtube',
-            settings: {}
-        });
-
+    const handleYoutube = () => {
         setModalActive(!modalActive);
     };
 
@@ -38,8 +37,4 @@ export const YoutubeExtension = ({onClick}) => {
             <YoutubeModal onClose={handleModalActive} active={modalActive}/>
         </>
     );
-};
-
-YoutubeExtension.propTypes = {
-    onClick: PropTypes.func.isRequired,
 };
