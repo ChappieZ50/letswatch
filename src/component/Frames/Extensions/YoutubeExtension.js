@@ -2,9 +2,12 @@ import * as React from 'react';
 import {useState} from "react";
 import PropTypes from "prop-types";
 
+import ReactTooltip from "react-tooltip";
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {YoutubeModal} from "../Modals/YoutubeModal";
+
 
 export const YoutubeExtension = ({onClick}) => {
 
@@ -26,9 +29,12 @@ export const YoutubeExtension = ({onClick}) => {
 
     return (
         <>
-            <div className="frame-item" onClick={handleYoutube}>
+            <div className="frame-item" data-tip data-for="frameYoutube" onClick={handleYoutube}>
                 <FontAwesomeIcon icon={faYoutube}/>
             </div>
+            <ReactTooltip id="frameYoutube" place="top" effect="solid">
+                Youtube
+            </ReactTooltip>
             <YoutubeModal onClose={handleModalActive} active={modalActive}/>
         </>
     );
