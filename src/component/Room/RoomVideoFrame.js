@@ -9,7 +9,7 @@ import {useLocalStorage} from "../../hooks/useLocalStorage";
 import {usePlayerSeekTo} from "../../hooks/usePlayerSeekTo";
 
 import {onPlaying, setPlaying} from "../../redux/actions/room/videoAction";
-import {videoListener} from '../../listeners/videoListener';
+import {roomListener} from "../../listeners/roomListener";
 
 export const RoomVideoFrame = () => {
 
@@ -30,10 +30,15 @@ export const RoomVideoFrame = () => {
 
     useEffect(() => {
         if (room.room_id) {
-            videoListener(room.room_id, dispatch);
+            roomListener(room.room_id, dispatch);
         }
     }, [room.room_id]);
 
+    useEffect(() => {
+        if (video.sync) {
+            playerOnPlayPause();
+        }
+    }, [video.sync]);
 
     usePlayerSeekTo(player);
 
@@ -49,7 +54,7 @@ export const RoomVideoFrame = () => {
         }
     };
 
-   const playerOnPlayPause = (playing = true) => {
+    const playerOnPlayPause = (playing = true) => {
         const data = {
             playing,
             room_id: room.room_id,
