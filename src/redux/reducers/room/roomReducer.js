@@ -1,9 +1,10 @@
-import {ROOM_CREATE, ROOM_GET} from "../../actions/actionTypes";
+import {ROOM_CREATE, ROOM_GET, ROOM_JOIN, ROOM_SET} from "../../actions/actionTypes";
 
 const initialState = {
     errors: [],
+    joinErrors: [],
     data: {},
-    status: false
+    status: false,
 };
 
 const roomReducer = (state = initialState, action) => {
@@ -13,7 +14,17 @@ const roomReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             };
+        case ROOM_JOIN:
+            return {
+                ...state,
+                ...action.payload
+            };
         case ROOM_GET:
+            return {
+                ...state,
+                ...action.payload
+            };
+        case ROOM_SET:
             return {
                 ...state,
                 ...action.payload
