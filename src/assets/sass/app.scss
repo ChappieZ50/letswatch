@@ -610,7 +610,7 @@ html, body {
   .room-frame {
     width: 100%;
     height: 100%;
-    @include display-flex(center,center,column);
+    @include display-flex(center, center, column);
 
     .room-open-frame {
 
@@ -707,6 +707,30 @@ html, body {
 
   svg {
     color: $secondColor;
+  }
+}
+
+#copy-success {
+  background-color: #5f9b49 !important;
+  transition: all .6s ease-in-out;
+}
+
+.close-room-yes {
+  border-color: #fff !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: #fff !important;
+    color: $primaryColor !important;
+  }
+}
+
+.close-room-no {
+  border-color: $secondColor !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: $secondColor !important;
   }
 }
 
