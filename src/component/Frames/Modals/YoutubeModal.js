@@ -41,7 +41,7 @@ export const YoutubeModal = ({active, onClose}) => {
         await dispatch(sendPlayer(payload));
     };
     return (
-        <FrameModal onClose={onClose} active={active} title="Youtube Video">
+        <FrameModal onClose={onClose} active={active} title="Youtube">
             <div className="frame-modal-icon">
                 <FontAwesomeIcon icon={faYoutube}/>
             </div>

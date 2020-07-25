@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTwitch} from "@fortawesome/free-brands-svg-icons";
+import {faSoundcloud} from "@fortawesome/free-brands-svg-icons";
 
 import {Button} from "../../Landing/Button";
 import {FrameModal} from "../FrameModal";
@@ -13,7 +13,7 @@ import {sendPlayer} from "../../../redux/actions/room/roomAction";
 
 import {useLocalStorage} from "../../../hooks/useLocalStorage";
 
-export const TwitchModal = ({active, onClose}) => {
+export const SoundCloudModal = ({active, onClose}) => {
 
     const dispatch = useDispatch();
     const [storageUser] = useLocalStorage('user');
@@ -26,7 +26,7 @@ export const TwitchModal = ({active, onClose}) => {
 
     const handleClick = async () => {
         const payload = {
-            type: 'twitch',
+            type: 'soundcloud',
             url,
             user_id: storageUser,
             room_id: storageRoom,
@@ -36,18 +36,18 @@ export const TwitchModal = ({active, onClose}) => {
     };
 
     return (
-        <FrameModal onClose={onClose} active={active} title="Twitch">
+        <FrameModal onClose={onClose} active={active} title="Sound Cloud">
             <div className="frame-modal-icon">
-                <FontAwesomeIcon icon={faTwitch}/>
+                <FontAwesomeIcon icon={faSoundcloud}/>
             </div>
-            <input type="text" className="form-control" placeholder="Paste a twitch stream video or clip link"
+            <input type="text" className="form-control" placeholder="Paste a Sound Cloud link"
                    name="player" onChange={handlePlayer}/>
             <Button className="base-modal-button" onClick={handleClick}>Add</Button>
         </FrameModal>
     );
 };
 
-TwitchModal.propTypes = {
+SoundCloudModal.propTypes = {
     active: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
 };

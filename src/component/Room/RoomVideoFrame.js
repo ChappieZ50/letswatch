@@ -16,12 +16,6 @@ export const RoomVideoFrame = () => {
     const room = useSelector(state => state.room.data);
     const video = useSelector(state => state.video);
 
-    const config = {
-        youtube: {
-            playerVars: {}
-        }
-    };
-
     const player = useRef();
 
     const [storageUser] = useLocalStorage('user');
@@ -64,6 +58,18 @@ export const RoomVideoFrame = () => {
         dispatch(onPlaying(data));
     };
 
+    // This method not working for youtube and sound cloud
+    const handleSeek = () => {
+        console.log('SEEKED');
+        const data = {
+            playing: player.current.player.isPlaying,
+            room_id: room.room_id,
+            user_id: storageUser,
+            seek: parseFloat(player.current.getCurrentTime()),
+        };
+        dispatch(onPlaying(data));
+    };
+
     const playerOnReady = async (readyPlayer) => {
         await readyPlayer.seekTo(room.player.seek);
         if (!video.playing)
@@ -72,8 +78,7 @@ export const RoomVideoFrame = () => {
 
     return (
         <div className="video-frame">
-            <ReactPlayer ref={player} playing={video.playing}
-                         config={config}
+            <ReactPlayer onSeek={handleSeek} ref={player} playing={video.playing}
                          controls={true}
                          url={room.player.url}
                          width="100%" height="100%" muted={true}
