@@ -10,6 +10,7 @@ import {usePlayerSeekTo} from "../../hooks/usePlayerSeekTo";
 
 import {onPlaying, setPlaying} from "../../redux/actions/room/videoAction";
 import {roomListener} from "../../listeners/roomListener";
+import {HeaderFrames} from "../Frames/HeaderFrames";
 
 export const RoomVideoFrame = () => {
 
@@ -60,7 +61,6 @@ export const RoomVideoFrame = () => {
 
     // This method not working for youtube and sound cloud
     const handleSeek = () => {
-        console.log('SEEKED');
         const data = {
             playing: player.current.player.isPlaying,
             room_id: room.room_id,
@@ -77,14 +77,17 @@ export const RoomVideoFrame = () => {
     };
 
     return (
-        <div className="video-frame">
-            <ReactPlayer onSeek={handleSeek} ref={player} playing={video.playing}
-                         controls={true}
-                         url={room.player.url}
-                         width="100%" height="100%" muted={true}
-                         onReady={playerOnReady}
-                         onPlay={playerOnPlay}
-                         onPause={playerOnPause}/>
-        </div>
+        <>
+            <HeaderFrames/>
+            <div className="video-frame">
+                <ReactPlayer onSeek={handleSeek} ref={player} playing={video.playing}
+                             controls={true}
+                             url={room.player.url}
+                             width="100%" height="100%" muted={true}
+                             onReady={playerOnReady}
+                             onPlay={playerOnPlay}
+                             onPause={playerOnPause}/>
+            </div>
+        </>
     );
 };
