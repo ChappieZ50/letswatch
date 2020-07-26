@@ -40,7 +40,7 @@ export const TwitchModal = ({active, onClose}) => {
             <div className="frame-modal-icon">
                 <FontAwesomeIcon icon={faTwitch}/>
             </div>
-            <input type="text" className="form-control" placeholder="Paste a twitch stream video or clip link"
+            <input type="text" className="form-control" placeholder="Paste a twitch stream link"
                    name="player" onChange={handlePlayer}/>
             <Button className="base-modal-button" onClick={handleClick}>Add</Button>
         </FrameModal>

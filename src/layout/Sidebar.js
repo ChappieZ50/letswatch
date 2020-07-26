@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {faHome, faUserFriends, faCommentDots} from '@fortawesome/free-solid-svg-icons'
+
+import {FiMessageCircle,FiUsers,FiHome} from "react-icons/fi";
 
 import {SidebarGroup} from "../component/Partials/Sidebar/SidebarGroup";
 import {SidebarItem} from "../component/Partials/Sidebar/SidebarItem";
@@ -14,13 +15,16 @@ const Sidebar = () => {
             <div className="scroll-wrapper">
                 <div className="sidebar-inner">
                     <SidebarGroup title={'Menu'}>
-                        <SidebarItem to="/" icon={faHome}>
+                        <SidebarItem to="/">
+                            <FiHome size="22px" className="mr-3"/>
                             Home
                         </SidebarItem>
-                        <SidebarItem to="/watch-together" icon={faUserFriends}>
+                        <SidebarItem to="/watch-together">
+                            <FiUsers size="22px" className="mr-3"/>
                             Watch Together
                         </SidebarItem>
-                        <SidebarItem to="/discussions" icon={faCommentDots}>
+                        <SidebarItem to="/discussions">
+                            <span><FiMessageCircle/></span>
                             Discussions
                         </SidebarItem>
                     </SidebarGroup>

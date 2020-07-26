@@ -1,16 +1,16 @@
 import * as React from 'react';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 
 import {useDispatch, useSelector} from "react-redux";
 
 import ReactTooltip from "react-tooltip";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faWindowClose} from "@fortawesome/free-solid-svg-icons/faWindowClose";
+import { FaWindowClose } from "react-icons/fa";
+
 import {CloseRoomVerify} from "./ExtensionComponent/CloseRoomVerify";
 
 import {useLocalStorage} from "../../../hooks/useLocalStorage";
-import {deleteOrExitRoom, setRoom} from "../../../redux/actions/room/roomAction";
+import {deleteOrExitRoom} from "../../../redux/actions/room/roomAction";
 
 export const CloseRoomExtension = () => {
 
@@ -39,9 +39,9 @@ export const CloseRoomExtension = () => {
 
     return (
         <>
-            <div className="frame-item" data-tip data-for="frameCloseRoom" onClick={handleClose}>
+            <div className="frame-item" style={{width:'auto',height:'70px',padding:'15px 18px'}} data-tip data-for="frameCloseRoom" onClick={handleClose}>
                 {
-                    close ? <CloseRoomVerify closeExtension={handleCloseRoomVerify}/> : <FontAwesomeIcon icon={faWindowClose}/>
+                    close ? <CloseRoomVerify closeExtension={handleCloseRoomVerify}/> : <FaWindowClose/>
                 }
             </div>
             <ReactTooltip id="frameCloseRoom" place="top" effect="solid">

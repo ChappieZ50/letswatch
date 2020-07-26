@@ -11,7 +11,9 @@ export const SidebarItem = withRouter(({to, children, icon, location}) => {
     return (
         <li className={active()}>
             <NavLink exact activeClassName={'active'} to={to}>
-                <span><FontAwesomeIcon icon={icon}/></span>
+                {
+                    icon ? <span><FontAwesomeIcon icon={icon}/></span> : ''
+                }
                 {children}
             </NavLink>
         </li>
@@ -20,5 +22,5 @@ export const SidebarItem = withRouter(({to, children, icon, location}) => {
 
 SidebarItem.propTypes = {
     to: PropTypes.string.isRequired,
-    icon: PropTypes.object.isRequired
+    icon: PropTypes.object
 };
