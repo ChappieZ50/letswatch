@@ -1,5 +1,6 @@
 /* GLOBAL TYPES */
 export const SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE';
+export const CHAT_TOGGLE = 'CHAT_TOGGLE';
 
 /* ROOM TYPES */
 export const ROOM_CREATE = 'ROOM_CREATE';

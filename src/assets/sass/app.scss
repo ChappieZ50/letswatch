@@ -599,10 +599,6 @@ html, body {
       .user-name {
         margin-top: 15px;
         color: #fff;
-
-        .user-owner {
-          color: $secondColor;
-        }
       }
     }
   }
@@ -619,12 +615,28 @@ html, body {
         bottom: 200px;
       }
 
-      .open-frame-items {
-        display: flex;
+      .header-frames {
+        position: relative;
 
         .frame-item {
+          border-bottom-color: $borderColor !important;
+          border-top-color: transparent !important;
+        }
+      }
 
-          padding: 15px;
+      .open-frame-items {
+        @include display-flex(center, center);
+        flex-wrap: wrap;
+
+        .frame-item {
+          @include display-flex(center, center);
+
+          max-width: 150px;
+          max-height: 70px;
+
+          width: 60px;
+          height: 70px;
+
           cursor: pointer;
 
           border-color: $borderColor;
@@ -636,12 +648,9 @@ html, body {
 
           transition: all .3s;
 
-          &:not(:first-child) {
-            margin-left: 4px;
-          }
 
           &:hover {
-            border-color: $secondColor;
+            border-color: $secondColor !important;
             border-radius: 0;
             margin-top: -5px;
 
@@ -732,6 +741,175 @@ html, body {
   &:hover {
     background-color: $secondColor !important;
   }
+}
+
+
+.chat-toggle {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background-color: rgb(114, 79, 255);
+  color: $borderColor;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chat {
+  &.chat-active {
+    display: block;
+  }
+
+  display: none;
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+  max-width: 450px;
+  max-height: 400px;
+  width: 350px;
+  height: 400px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -webkit-box-shadow: 0px -5px 10px 2px rgba(213, 55, 102, 0.6);
+  box-shadow: 0px -3px 5px 1px rgba(114, 79, 255, 0.3);
+  background-color: $primaryColor;
+
+  .chat-header {
+    border-bottom: 1px solid $borderColor;
+    margin-top: 0;
+    padding: 20px 10px 20px;
+    @include display-flex(center, space-between);
+    height: 50px;
+
+    .chat-header-info {
+      @include display-flex();
+
+      .chat-avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        padding: 5px;
+        border: 1px solid $borderColor;
+      }
+
+      .chat-username {
+        color: #fff;
+        font-size: 16px;
+      }
+    }
+
+    .chat-close {
+      float: right;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  .chat-content {
+    padding: 20px 25px 5px 5px;
+    overflow-y: auto;
+    height: 300px;
+    @include scroll(5px, 5px, rgb(114, 79, 255));
+
+    .chat-message {
+      @include display-flex(flex-start, flex-start, row);
+      position: relative;
+
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+
+      .chat-message-user {
+
+        .avatar {
+          position: absolute;
+          top: 0;
+
+          img {
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+            border: 1px solid $borderColor;
+          }
+
+        }
+
+        .message-section {
+          margin-left: 50px;
+          padding: 10px;
+          border-radius: 15px;
+
+          box-shadow: 5px  -5px 5px rgba(0, 0, 0, 0.12), 8px 0 0 rgba(0, 0, 0, 0.24);
+          transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+          .username {
+            font-weight: bold;
+            color: #fff;
+          }
+
+          .message {
+            word-break: break-all;
+            font-weight: lighter;
+            color: #cccccc;
+
+          }
+        }
+      }
+    }
+
+    .chat-message-own {
+      @include display-flex(flex-end, flex-end, row);
+
+      .avatar {
+        right: 0;
+      }
+
+      .message-section {
+        margin-right: 50px;
+        margin-left: 10px !important;
+        box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.12), -8px 0 0 rgba(114, 79, 255, 0.52) !important;
+      }
+    }
+  }
+
+  .chat-footer {
+    @include display-flex(center space-between);
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    padding: 0 10px;
+
+    input {
+      border-radius: 15px;
+      background-color: rgb(114, 79, 255);
+      color: #fff;
+      padding-left: 16px;
+      height: 32px;
+      border: none;
+
+      &::placeholder {
+        color: #fff;
+      }
+    }
+
+    .chat-send {
+      margin-left: 12px;
+      font-size: 22px;
+      color: rgb(114, 79, 255);
+      cursor: pointer;
+
+      svg {
+        margin-bottom: 7px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.user-owner {
+  color: $secondColor;
 }
 
 /* Bootstrap */

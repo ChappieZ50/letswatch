@@ -3,6 +3,7 @@ import * as React from 'react';
 import {RoomUsers} from "./RoomUsers";
 import {Frames} from "../Frames/Frames";
 import {RoomVideoFrame} from "./RoomVideoFrame";
+import {Chat} from "../Chat/Chat";
 
 export const Room = () => {
 
@@ -13,6 +14,7 @@ export const Room = () => {
                 <Frames/>
             </div>
             <RoomUsers/>
+            <Chat/>
         </div>
     );
 };

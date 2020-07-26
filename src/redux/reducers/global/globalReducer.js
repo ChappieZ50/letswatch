@@ -1,7 +1,8 @@
-import {SIDEBAR_TOGGLE} from "../../actions/actionTypes";
+import {CHAT_TOGGLE, SIDEBAR_TOGGLE} from "../../actions/actionTypes";
 
 const initialState = {
-    active: false
+    active: false,
+    chat_active: false,
 };
 
 const globalReducer = (state = initialState, action) => {
@@ -10,6 +11,10 @@ const globalReducer = (state = initialState, action) => {
             return {
                 active: action.payload.active,
             };
+        case CHAT_TOGGLE:
+            return {
+                chat_active: action.payload.active
+            }
         default:
             return state;
     }
