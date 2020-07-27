@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 
 import avatarFemale from "../../assets/images/avatars/female.svg";
 import {useSelector} from "react-redux";
+import {Owner} from "../Owner";
 
 export const Content = () => {
 
@@ -15,7 +16,7 @@ export const Content = () => {
             element.scrollTop = element.scrollHeight;
             setScroll(true);
         }
-    }, [scroll,active]);
+    }, [scroll, active]);
 
     return (
         <div className="chat-content" id="chatContent">
@@ -25,9 +26,9 @@ export const Content = () => {
                         <img src={avatarFemale} className="rounded-circle rounded" alt="Chappie"/>
                     </div>
                     <div className="message-section">
-                        <div className="username">Chappie <span className="user-owner ml-1">(*)</span></div>
-                        <div className="message">This is a example message. Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
+                        <div className="username">Chappie</div>
+                        <div className="message">
+                            This is a example message. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         </div>
                     </div>
                 </div>
@@ -39,9 +40,9 @@ export const Content = () => {
                         <img src={avatarFemale} className="rounded-circle rounded" alt="Chappie"/>
                     </div>
                     <div className="message-section">
-                        <div className="username">Chappie <span className="user-owner ml-1">(*)</span></div>
-                        <div className="message">This is a example message. Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
+                        <div className="username">Chappie <Owner/></div>
+                        <div className="message">
+                            This is a example message. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         </div>
                     </div>
                 </div>
@@ -52,7 +53,7 @@ export const Content = () => {
                         <img src={avatarFemale} className="rounded-circle rounded" alt="Chappie"/>
                     </div>
                     <div className="message-section">
-                        <div className="username">Chappie <span className="user-owner ml-1">(*)</span></div>
+                        <div className="username">Chappie <Owner/></div>
                         <div className="message">
                             Naber
                         </div>
@@ -65,8 +66,9 @@ export const Content = () => {
                         <img src={avatarFemale} className="rounded-circle rounded" alt="Chappie"/>
                     </div>
                     <div className="message-section">
-                        <div className="username">Chappie <span className="user-owner ml-1">(*)</span></div>
-                        <div className="message">İyi
+                        <div className="username">Chappie</div>
+                        <div className="message">
+                            İyi
                         </div>
                     </div>
                 </div>

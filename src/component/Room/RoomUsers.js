@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {useSelector} from "react-redux";
 
 import avatarMale from "../../assets/images/avatars/male.svg";
 import avatarFemale from "../../assets/images/avatars/female.svg";
-import {useSelector} from "react-redux";
+import {Owner} from "../Owner";
 
 export const RoomUsers = () => {
 
@@ -20,7 +21,7 @@ export const RoomUsers = () => {
                             <div className="user-name">
                                 <span>
                                     {value.username}
-                                    {value.owner ? <span className="user-owner ml-1">(*)</span> : ''}
+                                    {value.owner ? <Owner/> : ''}
                                 </span>
                             </div>
                         </div>
