@@ -38,7 +38,7 @@ export const getRoom = state => dispatch => {
     const url = API + '/room/' + state.room_id + '/user/' + state.user_id;
 
     axios.get(url).then(response => {
-        dispatch(successGetRoom(response.data));
+        dispatch(successGetRoom(response.data, state.user_id));
     }).catch(() => {
         localStorage.removeItem('room');
     });
@@ -95,13 +95,16 @@ export const setPlayer = ({type, url, seek}) => dispatch => {
 
 /* SUCCESS and ERROR DISPATCHES */
 
-export const successGetRoom = data => {
+export const successGetRoom = (data, userId) => {
+    const user = data.users.filter(user => user.user_id === userId);
+
     return {
         type: ROOM_GET,
         payload: {
             data,
             errors: [],
             status: true,
+            user: user[0] ? user[0] : false
         }
     }
 };

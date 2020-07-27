@@ -5,6 +5,7 @@ const initialState = {
     joinErrors: [],
     data: {},
     status: false,
+    user: {},
 };
 
 const roomReducer = (state = initialState, action) => {
