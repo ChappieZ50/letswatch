@@ -72,15 +72,16 @@ export const RoomVideoFrame = () => {
 
     const playerOnReady = async (readyPlayer) => {
         await readyPlayer.seekTo(room.player.seek);
-        if (!video.playing)
+        if (!video.playing) {
             dispatch(setPlaying({playing: true, seek: room.player.seek}));
+        }
     };
 
     return (
         <>
             <HeaderFrames/>
             <div className="video-frame">
-                <ReactPlayer onSeek={handleSeek} ref={player} playing={video.playing}
+                <ReactPlayer onSeek={handleSeek} ref={player} playing={video.playing} className="react-player"
                              controls={true}
                              url={room.player.url}
                              width="100%" height="100%" muted={true}
