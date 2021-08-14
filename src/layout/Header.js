@@ -12,7 +12,7 @@ export const Header = () => {
             </div>
             <div className="header">
                 <div className="user">
-                    <Button className="bg-transparent">Sign In</Button>
+
                 </div>
             </div>
         </header>

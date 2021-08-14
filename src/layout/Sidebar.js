@@ -23,10 +23,6 @@ const Sidebar = () => {
                             <FiUsers size="22px" className="mr-3"/>
                             Watch Together
                         </SidebarItem>
-                        <SidebarItem to="/discussions">
-                            <span><FiMessageCircle/></span>
-                            Discussions
-                        </SidebarItem>
                     </SidebarGroup>
                 </div>
             </div>

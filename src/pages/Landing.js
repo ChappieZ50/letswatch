@@ -9,7 +9,6 @@ const Landing = () => (
 
                 <div className="fullScreen__text">
                     <Button to="/watch-together">Watch Together</Button>
-                    <Button to="/discussions">Join Discussions</Button>
                 </div>
             </div>
         </div>
