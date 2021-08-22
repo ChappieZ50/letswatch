@@ -8,7 +8,7 @@ import ReactPlayer from 'react-player';
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 import {usePlayerSeekTo} from "../../hooks/usePlayerSeekTo";
 
-import {onPlaying, setPlaying} from "../../redux/actions/room/videoAction";
+import {onPlaying, onSeeked, setPlaying} from "../../redux/actions/room/videoAction";
 import {roomListener} from "../../listeners/roomListener";
 import {HeaderFrames} from "../Frames/HeaderFrames";
 
@@ -67,6 +67,7 @@ export const RoomVideoFrame = () => {
             user_id: storageUser,
             seek: parseFloat(player.current.getCurrentTime()),
         };
+        //dispatch(onSeeked(data));
         dispatch(onPlaying(data));
     };
 

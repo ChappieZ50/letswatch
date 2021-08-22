@@ -14,7 +14,6 @@ export const Room = () => {
                 <Frames/>
             </div>
             <RoomUsers/>
-            <Chat/>
         </div>
     );
 };

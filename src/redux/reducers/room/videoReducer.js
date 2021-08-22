@@ -1,4 +1,4 @@
-import {VIDEO_ON_PLAYING, VIDEO_ON_SYNC} from "../../actions/actionTypes";
+import {VIDEO_ON_PLAYING, VIDEO_ON_SEEKED, VIDEO_ON_SYNC} from "../../actions/actionTypes";
 
 const initialState = {
     playing: false,
@@ -15,6 +15,11 @@ const videoReducer = (state = initialState, action) => {
                 ...action.payload
             };
         case VIDEO_ON_SYNC:
+            return {
+                ...state,
+                ...action.payload
+            };
+        case VIDEO_ON_SEEKED:
             return {
                 ...state,
                 ...action.payload
